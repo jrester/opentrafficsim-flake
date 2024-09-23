@@ -1,0 +1,44 @@
+From a542e31b8c8aee433f8e0925295a873084048036 Mon Sep 17 00:00:00 2001
+From: Florian Finkeldei <florian.finkeldei@tum.de>
+Date: Tue, 3 Sep 2024 16:45:05 +0200
+Subject: [PATCH] activate fat jar plugin required for cr-ots coupling / jpype
+
+---
+ pom.xml | 16 ++++++++++++++--
+ 1 file changed, 14 insertions(+), 2 deletions(-)
+
+diff --git a/pom.xml b/pom.xml
+index 463206c86..ba5ad4a89 100644
+--- a/pom.xml
++++ b/pom.xml
+@@ -424,7 +424,19 @@
+           <target>${jdk.version}</target>
+         </configuration>
+       </plugin>
+-
++      <plugin>
++        <groupId>org.apache.maven.plugins</groupId>
++        <artifactId>maven-shade-plugin</artifactId>
++        <version>3.4.1</version>
++        <executions>
++          <execution>
++            <phase>package</phase>
++            <goals>
++              <goal>shade</goal>
++            </goals>
++          </execution>
++        </executions>
++      </plugin>
+       <plugin>
+         <groupId>org.apache.maven.plugins</groupId>
+         <artifactId>maven-resources-plugin</artifactId>
+@@ -1125,4 +1137,4 @@
+     </contributor>
+   </contributors>
+ 
+-</project>
+\ No newline at end of file
++</project>
+-- 
+2.45.2
+
